@@ -1,7 +1,11 @@
-package com.google.p.shendl.jna.net;
-import com.google.p.shendl.jna.net.TestDll1Service.TestDll1.CompanyStruct;
-import com.google.p.shendl.jna.net.TestDll1Service.TestDll1.CompanyStruct2;
-import com.google.p.shendl.jna.net.TestDll1Service.TestDll1.UserStruct;
+package com.kinggroup.sample;
+
+import java.util.Arrays;
+import java.util.List;
+
+import com.kinggroup.sample.TestDll1Service.TestDll1.CompanyStruct;
+import com.kinggroup.sample.TestDll1Service.TestDll1.CompanyStruct2;
+import com.kinggroup.sample.TestDll1Service.TestDll1.UserStruct;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.NativeLong;
@@ -36,6 +40,11 @@ public class TestDll1Service {
            public NativeLong id;
            public WString name;
            public int age;
+
+           @Override
+           protected List getFieldOrder() {
+           	return Arrays.asList(new String[] { "id", "name", "age"});
+           }
        }
  
        public void sayUser(UserStruct.ByReference struct);
@@ -48,7 +57,11 @@ public class TestDll1Service {
            public UserStruct.ByValue[] users;
            //public UserStruct.ByValue[] users=new UserStruct.ByValue[100];
            public int count;
- 
+
+           @Override
+           protected List getFieldOrder() {
+           	return Arrays.asList(new String[] { "id", "name", "age"});
+           }
        }
  
       public   void sayCompany(CompanyStruct.ByReference pCompanyStruct);
@@ -59,7 +72,11 @@ public class TestDll1Service {
  
            public UserStruct.ByReference[] users=new UserStruct.ByReference[100];
            public int count;
- 
+
+           @Override
+           protected List getFieldOrder() {
+           	return Arrays.asList(new String[] { "id", "name", "age"});
+           }
        }
       public void sayCompany2(CompanyStruct2.ByReference  pCompanyStruct);
     }
